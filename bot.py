@@ -1,9 +1,11 @@
 import logging
+import os
+import telebot
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters, ConversationHandler
-
-ADMIN_ID = 1074902161
-
+TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_ID = int(os.getenv("ADMIN_ID"))
+bot = telebot.Telebot(TOKEN)
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
@@ -43,9 +45,7 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return ConversationHandler.END
 
 def main():
-  
-    TOKEN = "8053267049:AAFvaxDyhni1jB_x8o_PW3cpe-Gt-WdPjpM"
-
+    
     app = ApplicationBuilder().token(TOKEN).build()
 
     conv_handler = ConversationHandler(
